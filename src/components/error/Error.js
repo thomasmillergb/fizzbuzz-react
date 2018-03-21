@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
+import {Alert} from 'reactstrap';
 
 class Error extends Component {
     render() {
         if (this.props.error === true) {
             return (
-                <Alert color='danger'>
-                    <span>{this.props.errorMessage}</span>
-                </Alert>
+                <div className='error'>
+                    <Alert color='danger'>
+                        <span className='error-message'>{this.props.errorMessage}</span>
+                    </Alert>
+                </div>
             );
         }
         return null;

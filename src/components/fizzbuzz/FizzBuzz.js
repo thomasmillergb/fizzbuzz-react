@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-
 //Used an input component for simplicity and reliability as its already been unit tested https://www.npmjs.com/package/react-numeric-input
-import NumericInput from 'react-numeric-input';
-import Error from '../error/Error';
 import axios from 'axios';
-import {address, ENDPOINT, defaultHeaders, suffixAddress} from '../../lib/EndpointHelper';
+import {address, defaultHeaders, ENDPOINT} from '../../lib/EndpointHelper';
 import './fizzbuzz.css';
-import {Button, Alert} from 'reactstrap';
+import FizzBuzzDisplay from './FizzBuzzDisplay';
 
 /**
  * I have chosen to keep this very simple for this assignment as there is only one endpoint and only dependends
@@ -34,7 +31,6 @@ class FizzBuzz extends Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderMessage = this.renderMessage.bind(this);
         this.state = defaultState;
         
     }
@@ -47,36 +43,24 @@ class FizzBuzz extends Component {
                 this.setState({message: res.data.message});
             })
             .catch(error => {
-                // this.setState({
-                //     errorMessage: error.message,
-                //     error       : true
-                // });
+                this.setState({
+                    errorMessage: error.message,
+                    error       : true
+                });
             });
     }
     
-    renderMessage() {
-        if (this.state.error === true) {
-            return <Error error={this.state.error} errorMessage={this.state.errorMessage}/>;
-        }
-        else if(this.state.message !== ''){
-            return <Alert color='success'><span className={'fizz-buzz-output'}>{this.state.message}</span></Alert>;
-        }
-    }
     
     render() {
         return (
-            <div className='fizz-buzz-container'>
-                <h1 className='fizz-buzz-title'>FizzBuzz!!!</h1>
-                <div className='fizz-buzz'>
-                    <div className={'fizz-buzz-message'}>
-                        {this.renderMessage()}
-                    </div>
-                    <NumericInput className='fizz-buzz-numeric-input' defaultValue={this.state.currentValue} onChange={(value) => this.setState({currentValue: value})} precision={0}/>
-                    <div className='fizz-buzz-action-container'>
-                        <Button className='fizz-buzz-action-btn' onClick={() => this.handleSubmit(this.state.currentValue)}>Submit</Button>
-                    </div>
-                </div>
-            </div>
+           <FizzBuzzDisplay
+               handleSubmit = {this.handleSubmit}
+               error = {this.state.error}
+               errorMessage = {this.state.errorMessage}
+               currentValue = {this.state.currentValue}
+               message = {this.state.message}
+               onChange = {(val) => this.setState({currentValue :  val})}
+           />
         );
     }
 }
