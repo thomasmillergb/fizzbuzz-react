@@ -36,7 +36,6 @@ class FizzBuzz extends Component {
     
     handleSubmit(input) {
         this.setState({...defaultState, currentValue: this.state.currentValue});
-        console.log(address(ENDPOINT.STANDARD_FIZZ_BUZZ.replace('{input}', '3')));
         axios.get(address(ENDPOINT.STANDARD_FIZZ_BUZZ).replace('{input}', input), defaultHeaders)
             .then(res => {
                 this.setState({message: res.data.message});
