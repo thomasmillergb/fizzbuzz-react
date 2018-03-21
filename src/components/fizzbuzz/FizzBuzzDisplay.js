@@ -7,18 +7,10 @@ import Error from '../error/Error';
 import './fizzbuzz.css';
 import {Button, Alert} from 'reactstrap';
 
-/**
- * I have chosen to keep this very simple for this assignment as there is only one endpoint and only dependends
- * on the server running.
- * The component contains all the props for fizzbuzz, ie error handling and printing messages
- *
- * There are a  hundreds of ways that react can be implemented, by that i mean react is just a small drop in the
- * ocean of what people normally think of react.
- * Must commonly react is used with redux which is a props container that any container can retrieve props from. See for detail https://redux.js.org/
- * A good example of what i am talking about is react slingshot, a starter kit i was tempted to use but was too overkill. See for detail https://github.com/coryhouse/react-slingshot
- *
- */
 
+/*
+* The follow component is what does the rendering
+*/
 class FizzBuzzDisplay extends Component {
     
     constructor() {

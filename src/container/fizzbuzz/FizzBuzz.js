@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 //Used an input component for simplicity and reliability as its already been unit tested https://www.npmjs.com/package/react-numeric-input
 import axios from 'axios';
 import {address, defaultHeaders, ENDPOINT} from '../../lib/EndpointHelper';
-import './fizzbuzz.css';
-import FizzBuzzDisplay from './FizzBuzzDisplay';
+import FizzBuzzDisplay from '../../components/fizzbuzz/FizzBuzzDisplay';
 
 /**
  * I have chosen to keep this very simple for this assignment as there is only one endpoint and only dependends
  * on the server running.
- * The component contains all the state for fizzbuzz, ie error handling and printing messages
+ * The component contains all the state for fizzbuzz, ie error handling and printing messages. I have put this in a folder container as this is would normally interact with redux state
  *
  * There are a  hundreds of ways that react can be implemented, by that i mean react is just a small drop in the
  * ocean of what people normally think of react.
@@ -36,7 +35,7 @@ class FizzBuzz extends Component {
     }
     
     handleSubmit(input) {
-        this.setState(defaultState);
+        this.setState({...defaultState, currentValue: this.state.currentValue});
         console.log(address(ENDPOINT.STANDARD_FIZZ_BUZZ.replace('{input}', '3')));
         axios.get(address(ENDPOINT.STANDARD_FIZZ_BUZZ).replace('{input}', input), defaultHeaders)
             .then(res => {
