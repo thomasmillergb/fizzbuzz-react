@@ -44,7 +44,7 @@ class FizzBuzzDisplay extends Component {
                     <div className={'fizz-buzz-message'}>
                         {this.renderMessage()}
                     </div>
-                    <NumericInput className='fizz-buzz-numeric-input' defaultValue={this.props.currentValue} onChange={this.props.onChange} precision={0}/>
+                    <NumericInput className='fizz-buzz-numeric-input' defaultValue={this.props.currentValue} onChange={this.props.onChange} precision={0} value={this.props.currentValue}/>
                     <div className='fizz-buzz-action-container'>
                         <Button className='fizz-buzz-action-btn' onClick={() => this.props.handleSubmit(this.props.currentValue)}>Submit</Button>
                     </div>
@@ -57,12 +57,12 @@ class FizzBuzzDisplay extends Component {
 export default FizzBuzzDisplay;
 
 FizzBuzzDisplay.protoTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    error       : PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string.isRequired,
-    currentValue: PropTypes.string.isRequired,
-    message     : PropTypes.string.isRequired,
-    onChange    : PropTypes.func.isRequired
+    handleSubmit: PropTypes.func,
+    error       : PropTypes.bool,
+    errorMessage: PropTypes.string,
+    currentValue: PropTypes.string,
+    message     : PropTypes.string,
+    onChange    : PropTypes.func
 };
 
 FizzBuzzDisplay.defaultProtoTypes = {
